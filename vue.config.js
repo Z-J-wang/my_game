@@ -1,6 +1,6 @@
 const path = require('path')
 // const UglifyPlugin = require('uglifyjs-webpack-plugin')
-const CompressionPlugin = require("compression-webpack-plugin")
+// const CompressionPlugin = require("compression-webpack-plugin")
 const webpack = require('webpack')
 
 module.exports = {

@@ -1,4 +1,6 @@
+export default class Snake{
 
+}
 var $background = $('.background');				//该全局变量用于获取背景图，因为背景图在游戏中不会发生变化，可在最开始获取就行
 var coordinate_x = new Array();					//创建一个数组，用于存放蛇的每个身体节点的x坐标值
 var coordinate_y = new Array();					//创建一个数组，用于存放蛇的每个身体节点的y坐标值
@@ -28,9 +30,6 @@ const snake = $(document).ready(function(){
 		$(".begin").hide();
 	})
 	
-	$("#btn_exit").click(function(){			//为退出按钮添加单击事件，实现当前窗口关闭
-		window.close();	
-	})
 	
 	$("#btn_restart").click(function(){			//为重新开始按钮添加单击事件，实现窗口重新加载
 		window.location.reload();
