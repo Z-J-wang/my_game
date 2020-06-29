@@ -41,13 +41,20 @@
                     /></li>
             </ul>
         </div>
-        <div class="GameOver">
-            <input
-                type="button"
-                value="重新开始"
-                id="btn_restart"
-                @click="restart()"
-            />
+        <div class="GameOver" v-show="showTmpMenu">
+            <div class="btnList">
+                <input
+                    type="button"
+                    value="继续"
+                    @click="goTo()"
+                />
+                <input
+                    type="button"
+                    value="重新开始"
+                    id="btn_restart"
+                    @click="restart()"
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -56,12 +63,14 @@
 // import Vue from "vue";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import Snake from "./snake";
+
 declare var $: any;
 
 @Component
 export default class Gluttonous_Snake extends Vue {
     private showSnake: boolean = false; // 蛇头显示控制
     private showMenu: boolean = true; // 菜单显示控制
+    private showTmpMenu: boolean = false; // 暂停菜单
     private diffculty: string = ""; // 游戏难度
     private score: number = 0; // 游戏得分
     private snake!: Snake;
@@ -111,6 +120,11 @@ export default class Gluttonous_Snake extends Vue {
                         }
                     }
                     break;
+                case 27:
+                    {
+                        this.esc();
+                    }
+                    break;
             }
         });
     }
@@ -156,6 +170,14 @@ export default class Gluttonous_Snake extends Vue {
      */
     private restart(): void {
         window.location.reload();
+    }
+
+    private esc() {
+        this.showTmpMenu = true;
+    }
+
+    private goTo() {
+        this.showTmpMenu = false;
     }
 }
 </script>
@@ -247,7 +269,7 @@ export default class Gluttonous_Snake extends Vue {
     }
     .begin ul li input:hover,
     .begin ul li select:hover,
-    .GameOver input:hover {
+    .GameOver .btnList input:hover {
         background: #a3d35b;
     }
     .begin ul li input:active,
@@ -272,28 +294,33 @@ export default class Gluttonous_Snake extends Vue {
     }
 
     .GameOver {
-        display: none;
+        .btnList{
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            width: 180px;
+
+            input {
+                width: 100%;
+                height: 60px;
+                margin-top: 20px;
+                line-height: 60px;
+                border: none;
+                background-color: #7dbb32;
+                cursor: pointer;
+                border-radius: 0.3em;
+                box-shadow: 0 1px white inset;
+                text-align: center;
+                text-shadow: 0 1px 1px black;
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                outline: none;
+            }
+        }
     }
-    .GameOver input {
-        width: 180px;
-        height: 60px;
-        line-height: 60px;
-        border: none;
-        /*background-color: #7dbb32;*/
-        background: transparent;
-        cursor: pointer;
-        border-radius: 0.3em;
-        box-shadow: 0 1px white inset;
-        text-align: center;
-        text-shadow: 0 1px 1px black;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        outline: none;
-        position: absolute;
-        top: 220px;
-        left: 400px;
-    }
+    
     .score {
         position: absolute;
         font-size: 20px;
