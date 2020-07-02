@@ -11,19 +11,19 @@ export default class Snake {
     private _foot_x!: number;
     private _foot_y!: number;
 
-    get difficult():number{
+    public get difficult(): number {
         return this._difficult;
     }
 
-    set difficult(difficult:number){
+    public set difficult(difficult: number) {
         this._difficult = difficult;
     }
 
-    get status():string{
+    public get status(): string {
         return this._status;
     }
 
-    set status(status:string){
+    public set status(status: string) {
         this._status = status;
     }
 
@@ -42,13 +42,11 @@ export default class Snake {
     public startGame(): void {
         this.Crate_start_snake_boby();
         this.create_foot();
-        this._time = setInterval((): any => {
-            this.Auto_walk();
-        }, this._difficult)
+        this.Auto_walk()
     }
 
     //创建一节蛇身
-    public Crate_start_snake_boby() {
+    public Crate_start_snake_boby(): void {
         let $newSnake_boby = $("<div class='snake_boby'></div>");					//创建一个新节点（蛇身）
         let $snakes = this._main.children('div').first();										//获取全部的蛇身
         let L_left = parseInt($snakes.eq($snakes.length - 1).css("left")) - 20 + 'px';	//查到蛇尾节点，获取x,y坐标值，赋给新建的蛇身节点
@@ -58,7 +56,7 @@ export default class Snake {
         this._main.append($newSnake_boby);											//把新建的蛇身节点添加到背景中
     }
 
-    public Crate_snake_boby() {
+    public Crate_snake_boby(): void {
         let $newSnake_boby = $("<div></div>");
         let $snakes = this._main.children('div').first();
         let Last_boby_x = parseInt($snakes.eq($snakes.length - 1).css("left"));		//获取蛇尾的坐标
@@ -83,24 +81,24 @@ export default class Snake {
             }
         }
         this._main.append($newSnake_boby);
-        setTimeout(()=>{
+        setTimeout(() => {
             $newSnake_boby.addClass("snake_boby")
         }, 200)
     }
 
-    public create_foot() {
+    public create_foot(): void {
         let _status = true;											//新建一个变量用来判断是否生成新的食物
         const $snakes = $(".background>div");
         do {
-        this._foot_x = Math.floor(Math.random() * 50) * 20;			//随机生成一个坐标值
-        this._foot_y = Math.floor(Math.random() * 30) * 20;
-        for (let i = 0; i < $snakes.length; i++) {
-            this._coordinate_y[i] = $snakes.eq(i).css("top");
-            this._coordinate_x[i] = $snakes.eq(i).css("left");
-            if (this._foot_x != parseInt(this._coordinate_x[i]) && this._foot_y != parseInt(this._coordinate_y[i])) {		//判断新坐标值是否跟蛇身重叠
-                _status = false;														//不存在重叠，转化status的值，跳出循环
+            this._foot_x = Math.floor(Math.random() * 50) * 20;			//随机生成一个坐标值
+            this._foot_y = Math.floor(Math.random() * 30) * 20;
+            for (let i = 0; i < $snakes.length; i++) {
+                this._coordinate_y[i] = $snakes.eq(i).css("top");
+                this._coordinate_x[i] = $snakes.eq(i).css("left");
+                if (this._foot_x != parseInt(this._coordinate_x[i]) && this._foot_y != parseInt(this._coordinate_y[i])) {		//判断新坐标值是否跟蛇身重叠
+                    _status = false;														//不存在重叠，转化status的值，跳出循环
+                }
             }
-        }
         } while (_status)
         let $foot = $("<span class='foot'></span>");
         $foot.css("top", this._foot_y + "px");
@@ -108,7 +106,7 @@ export default class Snake {
         this._main.append($foot);
     }
 
-    public eat() {
+    public eat(): void {
         let $snakes = $(".background>div");
         let $H_Top1 = parseInt($snakes.eq(0).css("top"));				//获取蛇头的坐标
         let $H_Left1 = parseInt($snakes.eq(0).css("left"));
@@ -122,7 +120,7 @@ export default class Snake {
 
     }
 
-    public move_right() {
+    public move_right():void {
         let $snakes = $(".background>div");
         let $H_Top = parseInt($snakes.eq(0).css("top"));
         let $H_Left = parseInt($snakes.eq(0).css("left"));
@@ -137,13 +135,10 @@ export default class Snake {
                 $snakes.eq(i).css("left", this._coordinate_x[i - 1]);
             }
             this.collide_dead();
-        } else {
-            return false;
-        }
-
+        } 
     }
 
-    public move_left() {
+    public move_left():void {
         let $snakes = $(".background>div");
         let $H_Top = parseInt($snakes.eq(0).css("top"));
         let $H_Left = parseInt($snakes.eq(0).css("left"));
@@ -158,12 +153,10 @@ export default class Snake {
                 $snakes.eq(i).css("left", this._coordinate_x[i - 1]);
             }
             this.collide_dead();
-        } else {
-            return false;
         }
     }
 
-    public move_top() {
+    public move_top(): void {
         let $snakes = $(".background>div");
         let $H_Top = parseInt($snakes.eq(0).css("top"));
         let $H_Left = parseInt($snakes.eq(0).css("left"));
@@ -178,12 +171,10 @@ export default class Snake {
                 $snakes.eq(i).css("left", this._coordinate_x[i - 1]);
             }
             this.collide_dead();
-        } else {
-            return false;
         }
     }
 
-    public move_bottom() {
+    public move_bottom(): void {
         let $snakes = $(".background>div");
         let $H_Top = parseInt($snakes.eq(0).css("top"));
         let $H_Left = parseInt($snakes.eq(0).css("left"));
@@ -198,8 +189,6 @@ export default class Snake {
                 $snakes.eq(i).css("left", this._coordinate_x[i - 1]);
             }
             this.collide_dead();
-        } else {
-            return false;
         }
     }
 
@@ -217,6 +206,7 @@ export default class Snake {
             if ($H_Top1 == parseInt(this._coordinate_y[j]) && $H_Left1 == parseInt(this._coordinate_x[j])) { //判断蛇头坐标是否跟蛇身任意节点坐标重叠，重叠则认为吃到自己，清空setInterval，显示GameOver
                 alert("Game Over");
                 clearTimeout(this._time);
+                $("#btn_togo").hide()
                 $(".GameOver").show();
                 //				$("#btn_begin").focus();
                 return false;
@@ -224,13 +214,14 @@ export default class Snake {
             if ($H_Top1 > 580 || $H_Top1 < 0 || $H_Left1 > 980 || $H_Left1 < 0) {			//判断是否超出边界
                 alert("Game Over");
                 clearTimeout(this._time);
+                $("#btn_togo").hide()
                 $(".GameOver").show();
                 return false;
             }
         }
     }
 
-    public Auto_walk() {
+    public Walk(): void {
         if (this._status == "Right") {
             this.move_right();
             this.eat();
@@ -244,5 +235,16 @@ export default class Snake {
             this.move_bottom();
             this.eat();
         }
+    }
+
+
+    public Auto_walk(): void {
+        this._time = setInterval((): any => {
+            this.Walk();
+        }, this._difficult)
+    }
+
+    public Stop_walk(): void {
+        clearInterval(this._time)
     }
 }

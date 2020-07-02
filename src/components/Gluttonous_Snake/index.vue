@@ -46,6 +46,7 @@
                 <input
                     type="button"
                     value="继续"
+                    id="btn_togo"
                     @click="goTo()"
                 />
                 <input
@@ -174,10 +175,12 @@ export default class Gluttonous_Snake extends Vue {
 
     private esc() {
         this.showTmpMenu = true;
+        this.snake.Stop_walk();
     }
 
     private goTo() {
         this.showTmpMenu = false;
+        this.snake.Auto_walk();
     }
 }
 </script>
