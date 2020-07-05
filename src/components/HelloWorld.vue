@@ -1,7 +1,7 @@
 <template>
     <div class="hello">
         <!-- <div class="section"> -->
-            <!-- <proloader></proloader> -->
+            <proloader v-if="proloader"></proloader>
             <!-- END PRELOADER -->
 
             <intro :class="selectSection == 'intro'?'active':''"></intro>
@@ -43,7 +43,7 @@
                                 class="nav navbar-nav"
                                 id="top-menu"
                             >
-                                <li class="active">
+                                <li :class="selectSection == 'intro'?'active':''">
                                     <a @click="selectSection = 'intro'">
                                         <img
                                             src="../assets/images/profile-pic.jpg"
@@ -54,7 +54,7 @@
                                         >
                                     </a>
                                 </li>
-                                <li>
+                                <li :class="selectSection == 'about'?'active':''">
                                     <a @click="selectSection = 'about'">
                                         <i
                                             class="fa fa-user"
@@ -63,7 +63,7 @@
                                         <span>about me</span>
                                     </a>
                                 </li>
-                                <li>
+                                <li :class="selectSection == 'resume'?'active':''">
                                     <a @click="selectSection = 'resume'">
                                         <i
                                             class="fa fa-briefcase"
@@ -72,7 +72,7 @@
                                         <span>resume</span>
                                     </a>
                                 </li>
-                                <li>
+                                <li :class="selectSection == 'portfolio'?'active':''">
                                     <a @click="selectSection = 'portfolio'">
                                         <i
                                             class="fa fa-camera"
@@ -81,7 +81,7 @@
                                         <span>portfolio</span>
                                     </a>
                                 </li>
-                                <li>
+                                <li :class="selectSection == 'news'?'active':''">
                                     <a  @click="selectSection = 'news'">
                                         <i
                                             class="fa fa-comments"
@@ -90,7 +90,7 @@
                                         <span>blog</span>
                                     </a>
                                 </li>
-                                <li>
+                                <li :class="selectSection == 'contact'?'active':''">
                                     <a  @click="selectSection = 'contact'">
                                         <i
                                             class="fa fa-phone"
@@ -117,6 +117,9 @@ import Resume from './index/Resume.vue'
 import Portfolio from './index/Portfolio.vue'
 import News from './index/News.vue'
 import Contact from './index/Contact.vue'
+
+declare let $: any;
+
 @Component({
     // name: 'EditArticle',
     components: {
@@ -133,10 +136,17 @@ export default class HelloWorld extends Vue {
     @Prop() private msg!: string;
 
     private selectSection:string = 'intro';
- 
+    private proloader:boolean = true;
+
+    mounted() {
+        this.proloader = false;
+    }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+a{
+    cursor: pointer;
+}
 </style>
