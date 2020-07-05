@@ -41,7 +41,10 @@
                     /></li>
             </ul>
         </div>
-        <div class="GameOver" v-show="showTmpMenu">
+        <div
+            class="GameOver"
+            v-show="showTmpMenu"
+        >
             <div class="btnList">
                 <input
                     type="button"
@@ -56,6 +59,35 @@
                     @click="restart()"
                 />
             </div>
+        </div>
+        <div class="music">
+            <i
+                v-if="isMusicPlay"
+                @click="isMusicPlay = false"
+                title="点击此处暂停音乐"
+            >
+                <img
+                    class="play"
+                    src="../../assets/images/Gluttonous_Snake/music_paly.svg"
+                    width="30"
+                    height="30"
+                >
+            </i>
+            <i
+                v-else
+                @click="isMusicPlay = true"
+                title="点击此处播放背景音乐"
+            >
+                <img
+                    src="../../assets/images/Gluttonous_Snake/music_stop.svg"
+                    width="30"
+                >
+            </i>
+            <audio
+                src="../../assets/陈洁仪 - 从前的我.mp3"
+                autoplay
+                loop
+            ></audio>
         </div>
     </div>
 </template>
@@ -75,6 +107,7 @@ export default class Gluttonous_Snake extends Vue {
     private diffculty: string = ""; // 游戏难度
     private score: number = 0; // 游戏得分
     private snake!: Snake;
+    private isMusicPlay: boolean = true;
 
     mounted() {
         let $background = $(".background");
@@ -129,6 +162,7 @@ export default class Gluttonous_Snake extends Vue {
             }
         });
     }
+
     /**
      * 监听游戏难度切换操作
      */
@@ -153,6 +187,19 @@ export default class Gluttonous_Snake extends Vue {
         }
     }
 
+    /**
+     * 监听游戏难度切换操作
+     */
+    @Watch("isMusicPlay")
+    private changeIsMusicPlay(val: string, oldVal: string) {
+        const audioElem: any = document.querySelector(".music audio");
+        if (val) {
+            audioElem.play();
+        } else {
+            audioElem.pause();
+        }
+    }
+
     private beginGame(): void {
         this.showMenu = false;
         this.showSnake = true;
@@ -173,12 +220,12 @@ export default class Gluttonous_Snake extends Vue {
         window.location.reload();
     }
 
-    private esc() {
+    private esc(): void {
         this.showTmpMenu = true;
         this.snake.Stop_walk();
     }
 
-    private goTo() {
+    private goTo(): void {
         this.showTmpMenu = false;
         this.snake.Auto_walk();
     }
@@ -188,6 +235,8 @@ export default class Gluttonous_Snake extends Vue {
 <style lang="less">
 #Gluttonous_Snake {
     position: relative;
+    margin: 20px auto;
+    width: 1000px;
     .background {
         position: relative;
         z-index: -1;
@@ -226,7 +275,7 @@ export default class Gluttonous_Snake extends Vue {
         display: inline-block;
         width: 20px;
         height: 20px;
-        background: url("../../assets/image/Gluttonous_Snake/food.png")
+        background: url("../../assets/images/Gluttonous_Snake/food.png")
             no-repeat;
         background-size: 20px;
         position: absolute;
@@ -237,7 +286,7 @@ export default class Gluttonous_Snake extends Vue {
     .GameOver {
         position: absolute;
         border: solid 1px;
-        background: url("../../assets/image/Gluttonous_Snake/贪吃蛇.jpg")
+        background: url("../../assets/images/Gluttonous_Snake/贪吃蛇.jpg")
             no-repeat;
         background-size: 600px;
         width: 600px;
@@ -297,7 +346,7 @@ export default class Gluttonous_Snake extends Vue {
     }
 
     .GameOver {
-        .btnList{
+        .btnList {
             position: absolute;
             top: 50%;
             right: 40px;
@@ -323,7 +372,7 @@ export default class Gluttonous_Snake extends Vue {
             }
         }
     }
-    
+
     .score {
         position: absolute;
         font-size: 20px;
@@ -335,6 +384,27 @@ export default class Gluttonous_Snake extends Vue {
         font-size: 20px;
         top: -30px;
         left: 800px;
+    }
+    .music {
+        position: absolute;
+        top: 0;
+        right: -40px;
+        i{
+            cursor: pointer;
+        }
+        .play {
+            animation: music_paly 3s linear infinite;
+        }
+    }
+}
+
+@keyframes music_paly {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
     }
 }
 </style>

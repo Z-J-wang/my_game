@@ -1,60 +1,142 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+    <div class="hello">
+        <!-- <div class="section"> -->
+            <!-- <proloader></proloader> -->
+            <!-- END PRELOADER -->
+
+            <intro :class="selectSection == 'intro'?'active':''"></intro>
+            <!-- END INTRO -->
+            <about :class="selectSection == 'about'?'active':''"></about>
+            <!-- END ABOUT -->
+            <resume :class="selectSection == 'resume'?'active':''"></resume>
+            <portfolio :class="selectSection == 'portfolio'?'active':''"></portfolio>
+            <news :class="selectSection == 'news'?'active':''"></news>
+            <contact :class="selectSection == 'contact'?'active':''"></contact>
+        <!-- </div> -->
+
+        <nav class="header-section navbar navbar-default">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button
+                                type="button"
+                                class="navbar-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1"
+                                aria-expanded="false"
+                            >
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div
+                            class="collapse navbar-collapse"
+                            id="bs-example-navbar-collapse-1"
+                        >
+                            <ul
+                                class="nav navbar-nav"
+                                id="top-menu"
+                            >
+                                <li class="active">
+                                    <a @click="selectSection = 'intro'">
+                                        <img
+                                            src="../assets/images/profile-pic.jpg"
+                                            class="img-responsive"
+                                            width="190"
+                                            height="190"
+                                            alt=""
+                                        >
+                                    </a>
+                                </li>
+                                <li>
+                                    <a @click="selectSection = 'about'">
+                                        <i
+                                            class="fa fa-user"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <span>about me</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a @click="selectSection = 'resume'">
+                                        <i
+                                            class="fa fa-briefcase"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <span>resume</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a @click="selectSection = 'portfolio'">
+                                        <i
+                                            class="fa fa-camera"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <span>portfolio</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  @click="selectSection = 'news'">
+                                        <i
+                                            class="fa fa-comments"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <span>blog</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  @click="selectSection = 'contact'">
+                                        <i
+                                            class="fa fa-phone"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <span>Contact us</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
+import { Component, Prop, Vue } from "vue-property-decorator";
+import Proloader from "./common/Preloader.vue";
+import Intro from './index/Intro.vue'
+import About from './index/About.vue'
+import Resume from './index/Resume.vue'
+import Portfolio from './index/Portfolio.vue'
+import News from './index/News.vue'
+import Contact from './index/Contact.vue'
+@Component({
+    // name: 'EditArticle',
+    components: {
+        Proloader,
+        Intro,
+        About,
+        Resume,
+        Portfolio,
+        News,
+        Contact
+    }
+})
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+    @Prop() private msg!: string;
+
+    private selectSection:string = 'intro';
+ 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
