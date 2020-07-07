@@ -16,9 +16,18 @@ import './assets/js/jquery.nicescroll.min.js'
 import './assets/js/wow.min.js'
 import './assets/js/jquery.simple-text-rotator.min.js'
 import './assets/js/jquery.prettyPhoto.js'
-// import './assets/js/custom'
+import commonFn from '@/assets/js/commonFn'
 
 Vue.config.productionTip = false
+
+
+declare module 'vue/types/vue' {
+    interface Vue {
+      $commonFn: any;
+    }
+}
+
+Vue.prototype.$commonFn = new commonFn();
 
 new Vue({
   router,

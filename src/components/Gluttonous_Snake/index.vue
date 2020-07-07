@@ -97,10 +97,10 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import Snake from "./snake";
 
-declare var $: any;
+declare let $: any;
 
 @Component
-export default class Gluttonous_Snake extends Vue {
+export default class GluttonousSnake extends Vue {
     private showSnake: boolean = false; // 蛇头显示控制
     private showMenu: boolean = true; // 菜单显示控制
     private showTmpMenu: boolean = false; // 暂停菜单
@@ -110,7 +110,7 @@ export default class Gluttonous_Snake extends Vue {
     private isMusicPlay: boolean = true;
 
     mounted() {
-        let $background = $(".background");
+        const $background = $(".background");
         this.diffculty = "简单";
         this.snake = new Snake($background, this.score, 500);
         $(window).keydown((event: any) => {
@@ -176,13 +176,13 @@ export default class Gluttonous_Snake extends Vue {
 
         switch (val) {
             case "简单":
-                this.snake.difficult = 500;
+                this.snake.difficult = degreeOfDifficulty.简单;
                 break;
             case "困难":
-                this.snake.difficult = 200;
+                this.snake.difficult = degreeOfDifficulty.困难;
                 break;
             case "地狱":
-                this.snake.difficult = 50;
+                this.snake.difficult = degreeOfDifficulty.地狱;
                 break;
         }
     }

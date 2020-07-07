@@ -102,12 +102,12 @@ $('document').ready(function() {
         });
    })(jQuery);
 
-    (function($){
-        $(".rotate").textrotator({
-            animation: "flipUp",
-            speed: 1750
-        });
-   })(jQuery);
+//     (function($){
+//         $(".rotate").textrotator({
+//             animation: "flipUp",
+//             speed: 1750
+//         });
+//    })(jQuery);
    /*==============================
         PRETTY PHOTO
     ==============================*/

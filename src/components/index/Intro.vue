@@ -34,6 +34,14 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
+
 @Component
-export default class intro extends Vue {}
+export default class Intro extends Vue {
+
+    mounted(){
+        this.$commonFn.textrotator('.rotate');
+        this.$commonFn.setScroll('.section');
+    }
+
+}
 </script>
