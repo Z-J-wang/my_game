@@ -88,19 +88,19 @@ $('document').ready(function() {
     //     })
     // })(jQuery);
 
-    (function($){
-        $(".section").niceScroll({
-            cursorborder:"",
-            cursorcolor:"#00F",
-            boxzoom:false,
-            scrollspeed:60,
-            cursorcolor: "#52e5ab",
-            cursorwidth: "5px",
-            zindex: "99999999999",
-            mousescrollstep:40,
-            enablemousewheel: true,
-        });
-   })(jQuery);
+//     (function($){
+//         $(".section").niceScroll({
+//             cursorborder:"",
+//             cursorcolor:"#00F",
+//             boxzoom:false,
+//             scrollspeed:60,
+//             cursorcolor: "#52e5ab",
+//             cursorwidth: "5px",
+//             zindex: "99999999999",
+//             mousescrollstep:40,
+//             enablemousewheel: true,
+//         });
+//    })(jQuery);
 
 //     (function($){
 //         $(".rotate").textrotator({

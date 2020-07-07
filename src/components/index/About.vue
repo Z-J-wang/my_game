@@ -90,7 +90,7 @@ export default class About extends Vue {
     }
 
     mounted() {
-        this.$commonFn.setScroll(".section");
+        // this.$commonFn.setScroll(".section");
     }
 
     /**

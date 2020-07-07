@@ -9,6 +9,8 @@ import './assets/css/prettyPhoto.css'
 import './assets/css/simpletextrotator.css'
 import './assets/css/style.css'
 
+import 'isotope-layout'
+
 import './assets/js/vendor/jquery-1.11.2.min.js'
 import './assets/js/vendor/bootstrap.min.js'
 import './assets/js/isotope.pkgd.min.js'

@@ -94,7 +94,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
 export default class Contact extends Vue {
     mounted(){
-        this.$commonFn.setScroll('.section');
+        // this.$commonFn.setScroll('.section');
     }
 }
 </script>
