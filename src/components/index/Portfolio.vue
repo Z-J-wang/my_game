@@ -22,15 +22,16 @@
                                 class="button"
                                 data-category="web-design"
                                 @click="filtersWD"
-                            >Graphics Design</li>
+                            >Web-Design</li>
                             <li
                                 class="button"
                                 data-category="graphic-design"
                                 @click="filtersGD"
-                            >Web Design</li>
+                            >Graphic-Design</li>
                             <li
                                 class="button"
                                 data-category="web-development"
+                                @click="filtersWebD"
                             >Web Devlopment</li>
                         </ul>
                     </div>
@@ -38,118 +39,31 @@
             </div>
 
             <div class="row work">
-                <div class="work-item web-design col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/1.jpg"
-                        data-gal="prettyPhoto[gallery2]"
+                <transition-group
+                    name="custom-classes-transition"
+                    leave-active-class="animated bounceOutRight"
+                    enter-active-class="animated wobble"
+                >
+                    <div
+                        class="work-item col-sm-3"
+                        :class="item.className"
+                        v-for="item of portfolioList"
+                        :key="item.imgSrc"
                     >
-                        <img
-                            src="@/assets/images/portfolio/1.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
-                <div class="work-item graphic-design col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/2.jpg"
-                        data-gal="prettyPhoto[gallery2]"
-                    >
-                        <img
-                            src="@/assets/images/portfolio/2.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
-                <div class="work-item web-development col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/3.jpg"
-                        data-gal="prettyPhoto[gallery2]"
-                    >
-                        <img
-                            src="@/assets/images/portfolio/3.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
-                <div class="work-item web-design col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/4.jpg"
-                        data-gal="prettyPhoto[gallery2]"
-                    >
-                        <img
-                            src="@/assets/images/portfolio/4.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
-                <div class="work-item web-development col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/5.jpg"
-                        data-gal="prettyPhoto[gallery2]"
-                    >
-                        <img
-                            src="@/assets/images/portfolio/5.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
-                <div class="work-item web-design col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/6.jpg"
-                        data-gal="prettyPhoto[gallery2]"
-                    >
-                        <img
-                            src="@/assets/images/portfolio/6.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
-                <div class="work-item graphic-design web-development col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/7.jpg"
-                        data-gal="prettyPhoto[gallery2]"
-                    >
-                        <img
-                            src="@/assets/images/portfolio/7.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
-                <div class="work-item graphic-design col-sm-3">
-                    <a
-                        href="@/assets/images/portfolio/8.jpg"
-                        data-gal="prettyPhoto[gallery2]"
-                    >
-                        <img
-                            src="@/assets/images/portfolio/8.jpg"
-                            class="img-responsive"
-                            width="254"
-                            height="254"
-                            alt
-                        />
-                    </a>
-                </div>
+                        <a
+                            :href="item.url"
+                            data-gal="prettyPhoto[gallery2]"
+                        >
+                            <img
+                                :src="item.imgSrc"
+                                class="img-responsive"
+                                width="254"
+                                height="254"
+                                alt
+                            />
+                        </a>
+                    </div>
+                </transition-group>
             </div>
         </div>
     </div>
@@ -159,8 +73,85 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 // import PorfolioFn from './Porfolio'
 
-
 @Component
 export default class Portfolio extends Vue {
+    private portfolioList: Array<object> = [];
+    private tmp_portfolios: Array<object> = [];
+    private portfolioData: Array<object> = [];
+
+    created() {
+        this.getPortfolios();
+    }
+
+    private getPortfolios() {
+        const dataList = [
+            {
+                className: "web-design",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/1.jpg")
+            },
+            {
+                className: "graphic-design",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/2.jpg")
+            },
+            {
+                className: "web-development",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/3.jpg")
+            },
+            {
+                className: "web-design",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/4.jpg")
+            },
+            {
+                className: "web-development",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/5.jpg")
+            },
+            {
+                className: "web-design",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/6.jpg")
+            },
+            {
+                className: "graphic-design",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/7.jpg")
+            },
+            {
+                className: "graphic-design",
+                url: "#",
+                imgSrc: require("@/assets/images/portfolio/8.jpg")
+            }
+        ];
+
+        this.portfolioList = dataList;
+        this.portfolioData = dataList;
+    }
+
+    private filtersAll(): void {
+        this.portfolioList = this.portfolioData.filter((item: any) => {
+            return item;
+        });
+    }
+
+    private filtersWD(): void {
+        this.portfolioList = this.portfolioData.filter((item: any) => {
+            return item.className == "web-design";
+        });
+    }
+
+    private filtersGD(): void {
+        this.portfolioList = this.portfolioData.filter((item: any) => {
+            return item.className == "graphic-design";
+        });
+    }
+    private filtersWebD(): void {
+        this.portfolioList = this.portfolioData.filter((item: any) => {
+            return item.className == "web-development";
+        });
+    }
 }
 </script>
