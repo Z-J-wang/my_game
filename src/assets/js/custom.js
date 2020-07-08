@@ -9,11 +9,11 @@ $('document').ready(function() {
     /*==============================
         PRELOADER
     ===============================*/
-    (function($){
-        $(window).load(function() {
-    	    $('#preloader').hide();
-        });
-    })(jQuery);
+    // (function($){
+    //     $(window).load(function() {
+    // 	    $('#preloader').hide();
+    //     });
+    // })(jQuery);
     /*==============================
        STICKY MENU
     ==============================*/
