@@ -159,25 +159,8 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 // import PorfolioFn from './Porfolio'
 
-declare let $:any;
 
 @Component
 export default class Portfolio extends Vue {
-
-    mounted() {
-        // this.$commonFn.setScroll(".section");
-    }
-
-    filtersAll(){
-        // $('.work').isotope({filter: '*'})
-    }
-
-    filtersGD(){
-        $('.work').isotope({filter: '.graphic-design'})
-    }
-
-    filtersWD(){
-        $('.work').isotope({filter: '.web-development'})
-    }
 }
 </script>

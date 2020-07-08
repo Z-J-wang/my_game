@@ -89,10 +89,6 @@ export default class About extends Vue {
         this.setInstagramList();
     }
 
-    mounted() {
-        // this.$commonFn.setScroll(".section");
-    }
-
     /**
      * 赋值 instagramList
      */

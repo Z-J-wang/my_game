@@ -147,8 +147,5 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class Resume extends Vue {
-    mounted() {
-        // this.$commonFn.setScroll(".section");
-    }
 }
 </script>

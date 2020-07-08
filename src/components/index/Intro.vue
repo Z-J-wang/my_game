@@ -40,7 +40,6 @@ export default class Intro extends Vue {
 
     mounted(){
         this.$commonFn.textrotator('.rotate');
-        this.$commonFn.setScroll('.section');
     }
 
 }
