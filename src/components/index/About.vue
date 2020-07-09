@@ -10,7 +10,7 @@
                                     <h3>About me</h3>
                                 </div>
                                 <div class="about-content">
-                                    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam ullamcorper quam leo. Aenean sodales, id eleifend massa posuere sed. Phasellus feugiat at orci vel rhoncus. Ut malesuada magna sed arcu finibus auctor ut a turpis. Sed vulputate ullamcorper nisi, non egestas enim ut. Praesent vel pellentesque Suspendisse tincidunt, et condimentum condimentum, nisi lectus rutrum enim, vulputate luctus nulla turpis id magna. Pellentesque at elit ut lacus viverra sollicitudin ut ac mi. Pellentesque mollis faucibus aliquam.</p>
+                                    <p>{{ myInfos.introducts }}</p>
                                 </div>
                             </div>
                             <div class="col-sm-6 wow fadeInDown animated" data-wow-delay="0.2s">
@@ -19,32 +19,24 @@
                                 </div>
                                 <div class="personal-info-content">
                                     <p>
-                                        <b>Name</b>
-                                        <span>Carlos Smith</span>
+                                        <b>姓名：</b>
+                                        <span>{{ myInfos.name }}</span>
                                     </p>
                                     <p>
-                                        <b>Birthday</b>
-                                        <span>1982.04.09 (year/day/month)</span>
+                                        <b>出生日期：</b>
+                                        <span>{{ myInfos.birthday }} (year/day/month)</span>
                                     </p>
                                     <p>
-                                        <b>Place of Birth</b>
-                                        <span>Sydney</span>
+                                        <b>籍贯：</b>
+                                        <span>{{ myInfos.placeOfBirth }}</span>
                                     </p>
                                     <p>
-                                        <b>Nationality</b>
-                                        <span>Australian</span>
+                                        <b>国籍：</b>
+                                        <span>{{ myInfos.nationality }}</span>
                                     </p>
                                     <p>
-                                        <b>Marital Status</b>
-                                        <span>Single</span>
-                                    </p>
-                                    <p>
-                                        <b>Freelance</b>
-                                        <span>Available</span>
-                                    </p>
-                                    <p>
-                                        <b>Vacation</b>
-                                        <span>Till April 25, 2016</span>
+                                        <b>现居地：</b>
+                                        <span>{{ myInfos.presentAddress }}</span>
                                     </p>
                                 </div>
                             </div>
@@ -84,9 +76,23 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
 export default class About extends Vue {
     private instagramList!: Array<object>;
+    private myInfos: object = {};
 
     created() {
         this.setInstagramList();
+        this.getMyInfos();
+    }
+
+    private getMyInfos(){
+        const infos = {
+            name: '王xx',
+            birthday: '1996.10.04',
+            placeOfBirth: '广东湛江',
+            nationality: '中国',
+            presentAddress: '深圳龙华',
+            introducts:'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam ullamcorper quam leo. Aenean sodales, id eleifend massa posuere sed. Phasellus feugiat at orci vel rhoncus. Ut malesuada magna sed arcu finibus auctor ut a turpis. Sed vulputate ullamcorper nisi, non egestas enim ut. Praesent vel pellentesque Suspendisse tincidunt, et condimentum condimentum, nisi lectus rutrum enim, vulputate luctus nulla turpis id magna. Pellentesque at elit ut lacus viverra sollicitudin ut ac mi. Pellentesque mollis faucibus aliquam.'
+        }
+        this.myInfos = infos;
     }
 
     /**
