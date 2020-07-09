@@ -14,22 +14,26 @@
                     <div class="filter-menu">
                         <ul class="button-group sort-button-group">
                             <li
-                                class="button active"
+                                class="button"
+                                :class="filterMenuActive === 'all works'?'active':''"
                                 data-category="all"
                                 @click="filtersAll"
                             >All Works</li>
                             <li
                                 class="button"
+                                :class="filterMenuActive === 'web-design'?'active':''"
                                 data-category="web-design"
                                 @click="filtersWD"
                             >Web-Design</li>
                             <li
                                 class="button"
+                                :class="filterMenuActive === 'graphic-design'?'active':''"
                                 data-category="graphic-design"
                                 @click="filtersGD"
                             >Graphic-Design</li>
                             <li
                                 class="button"
+                                :class="filterMenuActive === 'web-development'?'active':''"
                                 data-category="web-development"
                                 @click="filtersWebD"
                             >Web Devlopment</li>
@@ -41,8 +45,8 @@
             <div class="row work">
                 <transition-group
                     name="custom-classes-transition"
-                    leave-active-class="animated bounceOutRight"
-                    enter-active-class="animated wobble"
+                    leave-active-class="animated zoomOut "
+                    enter-active-class="animated zoomIn"
                 >
                     <div
                         class="work-item col-sm-3"
@@ -76,8 +80,8 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 @Component
 export default class Portfolio extends Vue {
     private portfolioList: Array<object> = [];
-    private tmp_portfolios: Array<object> = [];
     private portfolioData: Array<object> = [];
+    private filterMenuActive: string = 'all works';
 
     created() {
         this.getPortfolios();
@@ -135,23 +139,28 @@ export default class Portfolio extends Vue {
         this.portfolioList = this.portfolioData.filter((item: any) => {
             return item;
         });
+        this.filterMenuActive = "all works"
     }
 
     private filtersWD(): void {
         this.portfolioList = this.portfolioData.filter((item: any) => {
             return item.className == "web-design";
         });
+        this.filterMenuActive = "web-design"
     }
 
     private filtersGD(): void {
         this.portfolioList = this.portfolioData.filter((item: any) => {
             return item.className == "graphic-design";
         });
+        this.filterMenuActive = "graphic-design"
     }
+
     private filtersWebD(): void {
         this.portfolioList = this.portfolioData.filter((item: any) => {
             return item.className == "web-development";
         });
+        this.filterMenuActive = "web-development"
     }
 }
 </script>
