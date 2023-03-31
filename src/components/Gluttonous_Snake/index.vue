@@ -235,7 +235,8 @@ export default class GluttonousSnake extends Vue {
 <style lang="less">
 #Gluttonous_Snake {
     position: relative;
-    margin: 20px auto;
+    margin: 50px auto;
+    display: flex;
     width: 1000px;
     .background {
         position: relative;
@@ -243,7 +244,6 @@ export default class GluttonousSnake extends Vue {
         margin: 20px auto;
         width: 1000px;
         height: 600px;
-        /*line-height: 600px;*/
         border: solid 2px;
         background-color: #8cc63e;
     }
